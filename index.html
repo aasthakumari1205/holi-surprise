@@ -76,7 +76,7 @@ button {
 <div id="finalMessage"></div>
 
 <audio id="music" loop>
-  <source src="holi.mp3.mp3" type="audio/mpeg">
+  <source src="holi.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -102,7 +102,11 @@ function checkPassword() {
       <p>Stay colorful & chaotic 🌈✨</p>
     `;
 
-    document.getElementById("music").play();
+   const music = document.getElementById("music");
+music.volume = 0.7;
+music.play().catch(error => {
+  console.log("Autoplay blocked. Waiting for interaction.");
+});
     startParticles();
   } else {
     alert("Oopsie 🌸 Wrong password!");
