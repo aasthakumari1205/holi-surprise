@@ -80,40 +80,93 @@ button {
 </audio>
 
 <script>
-// PASSWORD DATABASE
-const passwords = {
-  "hostel": "Room 101 legends forever 😂🌈",
-  "chaos": "Drama never ends with you people 💃🔥",
-  "bestie": "You make life magical 💖✨"
+
+const users = {
+  "nidhi": {
+    year: "2022",
+    msg: "Hey! Jee partner, From first lecture chaos to lifelong madness 💃🔥"
+  },
+  "shruti": {
+    year: "2024",
+    msg: "You turned random hostel days into core memories 🌈✨"
+  },
+  "suman": {
+    year: "2024",
+    msg: "Hopefully someday we will get chhutti same day to travel together🌈✨"
+  },
+  "surbhi": {
+    year: "2024",
+    msg: "To the ones who survived my legendary bad pasta and still chose to be my friends 🍝💀🌈"
+  },
+  "tanisha": {
+    year: "2024",
+    msg: "You all trusted me in the kitchen once with the pasta… never again 😭🔥"
+  },
+  "saksham": {
+    year: "2024",
+    msg: "looking forward to more trips and more washroom finds😌"
+  },
+   "anuj": {
+    year: "2024",
+    msg: "(PPP)! Full form - Pizza🍕 Party Pending till then:  "
+  },
+   "rishav": {
+    year: "2024",
+    msg: "That pasta night was a disaster…But the laughter? Iconic, to the ones who turned my kitchen fail into a core memory 🍝🎬🌈"
+  },
+   "deepak": {
+    year: "2024",
+    msg: "hey! Camera person of the group... next trip pe DSLR pakka I'll bring😌"
+  },
+  "smitashya": {
+    year: "2024",
+    msg: "OG energy since day one😌"
+  },
+  "ravi": {
+    year: "2024",
+    msg: "a little secret: U R the best dancer among the boys in group😌"
+  }
 };
 
 function checkPassword() {
-  const pass = document.getElementById("password").value;
+  const pass = document.getElementById("password").value.toLowerCase();
   const finalDiv = document.getElementById("finalMessage");
 
-  if(passwords[pass]) {
-    const name = prompt("Enter your name 👀");
+  if(users[pass]) {
+
+    const year = prompt("What year did we meet? 👀");
+
+if(!year) {
+  alert("Don't run away bestie 😌 Try again!");
+  return;
+}
+
+    if(year !== users[pass].year) {
+     document.body.style.background = "red";
+alert("ACCESS DENIED 🚨 Fake friend detected 😂");
+location.reload();
+      return;
+    }
 
     document.getElementById("loginBox").style.display = "none";
     finalDiv.style.display = "block";
+
     finalDiv.innerHTML = `
-      <h1>🎉 HAPPY HOLI ${name.toUpperCase()} 🎉</h1>
-      <p>${passwords[pass]}</p>
-      <p>Stay colorful & chaotic 🌈✨</p>
+      <h1>🎉 Happy Holi ${pass.charAt(0).toUpperCase() + pass.slice(1)} 🎉</h1>
+      <p>${users[pass].msg}</p>
+      <p>Stay colorful & chaotic always 🌈✨</p>
     `;
 
-   const music = document.getElementById("music");
-music.volume = 0.7;
-music.play().catch(error => {
-  console.log("Autoplay blocked. Waiting for interaction.");
-});
+    const music = document.getElementById("music");
+    music.volume = 0.7;
+    music.play();
+
     startParticles();
+
   } else {
-    alert("Oopsie 🌸 Wrong password!");
+    alert("Wrong password bestie 😌");
   }
 }
-
-
 
 function startParticles() {
   for(let i=0; i<150; i++) {
@@ -130,7 +183,7 @@ function randomColor() {
   const colors = ["#ff6b81","#ff9ff3","#feca57","#48dbfb","#1dd1a1","#ffb8b8"];
   return colors[Math.floor(Math.random() * colors.length)];
 }
-</script>
 
+</script>
 </body>
 </html>
