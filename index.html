@@ -109,26 +109,7 @@ function checkPassword() {
   }
 }
 
-function checkPassword() {
-  const pass = document.getElementById("password").value;
-  const finalDiv = document.getElementById("finalMessage");
 
-  if(users[pass]) {
-    document.getElementById("loginBox").style.display = "none";
-
-    finalDiv.style.display = "block";
-    finalDiv.innerHTML = `
-      <h1>🎉 HAPPY HOLI ${users[pass].name.toUpperCase()} 🎉</h1>
-      <p>${users[pass].msg}</p>
-      <p>Stay colorful & magical always 🌈✨</p>
-    `;
-
-    document.getElementById("music").play();
-    startParticles();
-  } else {
-    alert("Oopsie 🌸 Wrong password!");
-  }
-}
 
 function startParticles() {
   for(let i=0; i<150; i++) {
