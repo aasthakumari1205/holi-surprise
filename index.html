@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Secret Holi Surprise 🌸</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #ffd6e8, #ffeaa7, #dff9fb, #fab1a0);
+  background-size: 400% 400%;
+  animation: bgMove 10s ease infinite;
+}
+
+@keyframes bgMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+#loginBox {
+  margin-top: 20%;
+}
+
+input {
+  padding: 12px;
+  border-radius: 25px;
+  border: none;
+  text-align: center;
+  width: 200px;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  background: #ff9ff3;
+  color: white;
+  font-weight: bold;
+}
+
+#finalMessage {
+  display: none;
+  margin-top: 15%;
+  font-size: 24px;
+  color: #6c5ce7;
+}
+
+/* Gulaal + confetti */
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(100vh); }
+}
+</style>
+</head>
+<body>
+
+<div id="loginBox">
+  <h2>🌸 Unlock Your Holi Surprise 🌸</h2>
+  <input type="password" id="password" placeholder="Enter your secret code">
+  <br>
+  <button onclick="checkPassword()">Unlock 💖</button>
+</div>
+
+<div id="finalMessage"></div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// PASSWORD DATABASE
+const passwords = {
+  "hostel": "Room 101 legends forever 😂🌈",
+  "chaos": "Drama never ends with you people 💃🔥",
+  "bestie": "You make life magical 💖✨"
+};
+
+function checkPassword() {
+  const pass = document.getElementById("password").value;
+  const finalDiv = document.getElementById("finalMessage");
+
+  if(passwords[pass]) {
+    const name = prompt("Enter your name 👀");
+
+    document.getElementById("loginBox").style.display = "none";
+    finalDiv.style.display = "block";
+    finalDiv.innerHTML = `
+      <h1>🎉 HAPPY HOLI ${name.toUpperCase()} 🎉</h1>
+      <p>${passwords[pass]}</p>
+      <p>Stay colorful & chaotic 🌈✨</p>
+    `;
+
+    document.getElementById("music").play();
+    startParticles();
+  } else {
+    alert("Oopsie 🌸 Wrong password!");
+  }
+}
+
+function checkPassword() {
+  const pass = document.getElementById("password").value;
+  const finalDiv = document.getElementById("finalMessage");
+
+  if(users[pass]) {
+    document.getElementById("loginBox").style.display = "none";
+
+    finalDiv.style.display = "block";
+    finalDiv.innerHTML = `
+      <h1>🎉 HAPPY HOLI ${users[pass].name.toUpperCase()} 🎉</h1>
+      <p>${users[pass].msg}</p>
+      <p>Stay colorful & magical always 🌈✨</p>
+    `;
+
+    document.getElementById("music").play();
+    startParticles();
+  } else {
+    alert("Oopsie 🌸 Wrong password!");
+  }
+}
+
+function startParticles() {
+  for(let i=0; i<150; i++) {
+    let particle = document.createElement("div");
+    particle.className = "particle";
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    particle.style.backgroundColor = randomColor();
+    document.body.appendChild(particle);
+  }
+}
+
+function randomColor() {
+  const colors = ["#ff6b81","#ff9ff3","#feca57","#48dbfb","#1dd1a1","#ffb8b8"];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>
+
+</body>
+</html>
